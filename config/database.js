@@ -1,5 +1,5 @@
 module.exports = {
-	database: 'mongodb://localhost:27017/dotaHeroesDB',
+	database: 'mongodb://localhost:27017/heroesDB',
 	secret: 'secret'
 
 }
