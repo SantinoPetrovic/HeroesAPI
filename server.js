@@ -15,6 +15,7 @@ const app = express()
 const port = 3000;
 
 const heroes = require('./routes/heroes');
+const users = require('./routes/users');
 
 app.use(bodyParser.json());
 /*app.use(bodyParser.urlencoded({extended: true}) );*/
@@ -41,6 +42,7 @@ app.post('/api/addSmashHero', function (req, res) {
 
 
 app.use('/heroes', heroes);
+app.use('/users', users);
 
 app.listen(port, function () {
   console.log('Listening on port 3000, Heroes API activated!')
