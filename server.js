@@ -2,6 +2,7 @@
 const express = require('express');
 const GetHeroService  = require('./services/getDotaHeroService')
 const bodyParser = require('body-parser');
+const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 mongoose.connect(config.database);
@@ -18,6 +19,13 @@ const heroes = require('./routes/heroes');
 const users = require('./routes/users');
 
 app.use(bodyParser.json());
+
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
 /*app.use(bodyParser.urlencoded({extended: true}) );*/
 
 app.get('/', function (req, res) {
