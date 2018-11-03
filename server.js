@@ -4,6 +4,7 @@ const GetHeroService  = require('./services/getDotaHeroService')
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
+var cors = require('cors');
 const config = require('./config/database');
 mongoose.connect(config.database);
 
@@ -17,6 +18,8 @@ const port = 3000;
 
 const heroes = require('./routes/heroes');
 const users = require('./routes/users');
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -47,7 +50,6 @@ app.post('/api/addSmashHero', function (req, res) {
 	heroServiceObj.addSmashHero(req.body)
 	console.log(req.body);
 })
-
 
 app.use('/heroes', heroes);
 app.use('/users', users);
