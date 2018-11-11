@@ -1,10 +1,9 @@
 // Get dependencies
 const express = require('express');
-const GetHeroService  = require('./services/getDotaHeroService')
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const mongoose = require('mongoose');
-var cors = require('cors');
+const cors = require('cors');
 const config = require('./config/database');
 mongoose.connect(config.database);
 
@@ -18,6 +17,8 @@ const port = 3000;
 
 const heroes = require('./routes/heroes');
 const users = require('./routes/users');
+const extern = require('./routes/extern');
+const pokemoncards = require('./routes/pokemoncards');
 
 app.use(cors());
 
@@ -35,25 +36,11 @@ app.get('/', function (req, res) {
   res.send('Invalid Endpoint.');
 })
 
-app.get('/api/getSmashHeroes', function (req, res) {
-  let smashHeroServiceObj = new GetHeroService(req, res)
-  smashHeroServiceObj.getSmashHeroes()
-})
-
-app.get('/api/getSmashHeroes/:link', function (req, res) {
-  let heroServiceObj = new GetHeroService(req, res)
-  heroServiceObj.getSpecificSmashHero(req.params.link)
-})
-
-app.post('/api/addSmashHero', function (req, res) {
-	let heroServiceObj = new GetHeroService(req, res)
-	heroServiceObj.addSmashHero(req.body)
-	console.log(req.body);
-})
-
 app.use('/heroes', heroes);
 app.use('/users', users);
+app.use('/extern', extern);
+app.use('/pokemontcg', pokemoncards);
 
 app.listen(port, function () {
-  console.log('Listening on port 3000, Heroes API activated!')
+  console.log('Listening on port 3000, API activated!')
 })
