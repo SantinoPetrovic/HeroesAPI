@@ -20,9 +20,8 @@ const users = require('./routes/users');
 const extern = require('./routes/extern');
 const binders = require('./routes/binders');
 const bindedbinders = require('./routes/bind-binders');
+const bindcards = require('./routes/bind-cards');
 const pokemoncards = require('./routes/pokemoncards');
-/*const ownedbinders = require('./routes/ownedbinders');
-const ownedpokemoncards = require('./routes/ownedpokemoncards');*/
 
 app.use(cors());
 
@@ -45,6 +44,7 @@ app.use('/users', users);
 app.use('/extern', extern);
 app.use('/binders', binders);
 app.use('/bindedBinders', binders);
+app.use('/bindCards', bindcards);
 app.use('/pokemontcg', pokemoncards);
 
 app.listen(port, function () {

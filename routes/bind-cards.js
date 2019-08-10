@@ -24,7 +24,7 @@ router.post('/getcardsByUser', (req, res, next) => {
     });
 });
 
-router.post('/postbinder', (req, res, next) => {
+router.post('/postBindedCard', (req, res, next) => {
     let newCard = new BindCard ({
         id: req.body.id,
         cardId: req.body.cardId,
