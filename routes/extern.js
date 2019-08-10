@@ -11,8 +11,9 @@ const fs = require('fs');
 const url = 'mongodb://localhost:27017/';
 
 const Card = require('../models/card');
+const Pokemoncollection = require('../models/pokemoncollection');
 
-router.post('/extractjson', (req, res, next) => {
+router.post('/extractjsoncards', (req, res, next) => {
     
     request(req.body.url, function (error, response, body) {
         if (error) {
@@ -20,7 +21,7 @@ router.post('/extractjson', (req, res, next) => {
         } else {
             const obj = JSON.parse(body);
             for(const card in obj.cards){
-                let newHero = new Card ({
+                let newCard = new Card ({
                     id: obj.cards[card].id,
                     name: obj.cards[card].name,
                     nationalPokedexNumber: obj.cards[card].nationalPokedexNumber,
@@ -38,7 +39,35 @@ router.post('/extractjson', (req, res, next) => {
                     attacks: obj.cards[card].attacks,
                     weaknesses: obj.cards[card].weaknesses
                 });                
-                Card.addCard(newHero, (err, user) => {
+                Card.addCard(newCard, (err, card) => {
+                    if(err) {
+                    } else {}
+                });                                
+            }                        
+        }
+    });
+    res.json({ success: true, message: "test"});        
+});
+
+router.post('/extractjsoncollection', (req, res, next) => {
+    
+    request(req.body.url, function (error, response, body) {
+        if (error) {
+            res.json({ success: false, message: "Error occured! Something went wrong with the request"});
+        } else {
+            const obj = JSON.parse(body);
+            for(const set in obj.sets){
+                let newCollection = new Pokemoncollection ({
+                    code: obj.sets[set].code,
+                    ptcgoCode: obj.sets[set].ptcgoCode,
+                    totalCards: obj.sets[set].totalCards,
+                    name: obj.sets[set].name,
+                    series: obj.sets[set].series,
+                    standardLegal: obj.sets[set].standardLegal,
+                    expandedLegal: obj.sets[set].expandedLegal,
+                    releaseDate: obj.sets[set].releaseDate
+                });                
+                Pokemoncollection.addCollection(newCollection, (err, collection) => {
                     if(err) {
                     } else {}
                 });                                

@@ -71,7 +71,6 @@ module.exports.addCard = function(newCard, callback) {
 module.exports.getCard = function(id, callback) {
 	const query = {id: id}
 	Pokemoncard.findOne(query, callback);
-	/*console.log(newCard);*/
 }
 
 /*module.exports.comparePassword = function(candidatePassword, hash, callback) {

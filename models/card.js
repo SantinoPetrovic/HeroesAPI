@@ -57,3 +57,8 @@ const Card = module.exports = mongoose.model('Card', CardSchema);
 module.exports.addCard = function(newCard, callback) {
 	newCard.save(callback);
 }
+
+module.exports.getCard = function(id, callback) {
+	const query = {id: id}
+	Card.findOne(query, callback);
+}

@@ -14,7 +14,7 @@ const Pokemoncard = require('../models/pokemoncard');
 
 router.post('/getcard', (req, res, next) => {
     const id = req.body.id;
-
+    console.log(id);
     Pokemoncard.getCard(id, (err, cardres) => {
         if(err) throw err;
         if(!cardres) {
