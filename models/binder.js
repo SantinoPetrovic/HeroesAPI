@@ -14,7 +14,7 @@ const Binders = module.exports = mongoose.model('binders', BinderSchema);
 
 module.exports.getBinder = function(id, callback) {
 	const query = {id: id}
-	Binder.findOne(query, callback);
+	Binders.findOne(query, callback);
 }
 
 /* Just to set something up */
