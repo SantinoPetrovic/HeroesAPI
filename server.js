@@ -43,7 +43,7 @@ app.use('/heroes', heroes);
 app.use('/users', users);
 app.use('/extern', extern);
 app.use('/binders', binders);
-app.use('/bindedBinders', binders);
+app.use('/bindedBinders', bindedbinders);
 app.use('/bindCards', bindcards);
 app.use('/pokemontcg', pokemoncards);
 
